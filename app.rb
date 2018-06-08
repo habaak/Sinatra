@@ -57,3 +57,27 @@ get '/lunch-hash' do
     @img = lunch_img[@menu]
     erb :lunchhash
 end
+
+get '/randomgame/:name' do
+    
+    datas = ["대학일기", "유미의세포들", "죽음에관하여", "마음의소리", "조의영역"]
+    data_imgs = {
+        "대학일기"=>"http://wtimg.webtooninsight.co.kr/webtoonthumbnail/wi_131115162545570996.jpg",
+        "유미의세포들"=>"http://menu.mt.co.kr/ize/thumb/2017/03/06/2017032622167267069_1.jpg?rnd=44344?rnd=4271",
+        "죽음에관하여"=>"http://img.insight.co.kr/static/2018/02/01/700/g23r8kxt63wwvd3057r9.jpg",
+        "마음의소리"=>"http://cfile29.uf.tistory.com/image/12604D4C50EF6A7A2627EE",
+        "조의영역"=>"http://fimg2.pann.com/new/download.jsp?FileID=24392183"
+    }
+    data_msg ={
+        "대학일기"=>"학점은 개나 줘버린게 똑같아요~~~~",
+        "유미의세포들"=>"머리 속에 X만 찼군요!",
+        "죽음에관하여"=>"올~~~ 분위기 있다",
+        "마음의소리"=>"당신은 삶 그 자체가 웹툰",
+        "조의영역"=>"인면어 같다는 말 들어본적 솔직히 있죠ㅋㅋㅋㅋㅋㅋ??"
+    }
+    @name = params[:name]
+    @selected = datas.sample
+    @img = data_imgs[@selected]
+    @text = data_msg[@selected]
+    erb :randomgame
+end
